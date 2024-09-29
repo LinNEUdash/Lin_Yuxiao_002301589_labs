@@ -211,7 +211,13 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         
         //This will reach to the previous panel and trigger an update;
+        Component[] panelStack = userProcessContainer.getComponents();
+        JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
+        ManageAccountsJPanel manageAccountsJPanel = (ManageAccountsJPanel) lastPanel;
+        manageAccountsJPanel.populateTable();
         
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
 
