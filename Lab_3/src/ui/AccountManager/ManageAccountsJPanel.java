@@ -238,7 +238,7 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
         for (Account a : accountDirectory.getAccounts()) {
             
             Object[] row = new Object[4];
-            row[0] = a;
+            row[0] = a.getBankName();
             row[1] = a.getRoutingNumber();
             row[2] = a.getAccountNumber();
             row[3] = String.valueOf(a.getBalance());
