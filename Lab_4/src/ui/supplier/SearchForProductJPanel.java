@@ -103,7 +103,30 @@ public class SearchForProductJPanel extends javax.swing.JPanel {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-        
+        String idText = idField.getText().trim();
+
+        if (idText.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please enter a Product ID.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            int productId = Integer.parseInt(idText);
+            Product foundProduct = supplier.getProductCatalog().searchProduct(productId);
+
+            if (foundProduct != null) {
+                // Product found, show details
+                ViewProductDetailJPanel viewProductDetailJPanel = new ViewProductDetailJPanel(workArea, foundProduct);
+                workArea.add("ViewProductDetailJPanel", viewProductDetailJPanel);
+                CardLayout layout = (CardLayout) workArea.getLayout();
+                layout.next(workArea);
+            } else {
+                // Product not found
+                javax.swing.JOptionPane.showMessageDialog(this, "No product match: " + productId, "Product Not Found", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please Enter a valid ID.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
         
 }//GEN-LAST:event_searchButtonActionPerformed
 

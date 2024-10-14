@@ -5,6 +5,8 @@
  */
 package model;
 
+import com.sun.org.apache.xerces.internal.util.FeatureState;
+
 /**
  *
  * @author archil
@@ -44,6 +46,7 @@ public class Feature {
         return value;
     }
 
+    
     public void setValue(Object value) {
         this.value = value;
     }
