@@ -29,6 +29,8 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     SupplierDirectory supplierDirectory;
     MasterOrderList masterOrderList;
+    
+    Order currentOrder;
 
 
     /** Creates new form BrowseProducts */
@@ -342,6 +344,22 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
         // TODO add your handling code here:
        
+        masterOrderList.addNewOrder(currentOrder);
+        currentOrder = new Order();
+        
+        populateCombo();
+        populateProductTable();
+        populatCartTable();
+        
+        txtNewQuantity.setText("");
+        txtSalesPrice.setText("");
+        txtSearch.setText("");
+        
+        spnQuantity.setValue(0);
+        
+        JOptionPane.showMessageDialog(this, "Thank you for your purchase. Looking forward to see you again!");
+        
+        
     }//GEN-LAST:event_btnCheckOutActionPerformed
 
     private void btnModifyQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyQuantityActionPerformed
@@ -545,7 +563,7 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     private void populatCartTable() {
 
         
-        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblCart.getModel();
         model.setRowCount(0);
         
         for (OrderItem oi : currentOrder.getOrderItemList()) {                
